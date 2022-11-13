@@ -1,11 +1,14 @@
 {
   description = "Fish support for the nix-shell environment of the Nix package manager";
 
-  inputs ={
+  inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs";
+    flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = {nixpkgs, ...}: {
-    fish-nix-shell = ./default.nix nixpkgs;
-  };
+  outputs = { self, nixpkgs, flake-utils }:
+    flake-utils.lib.eachSystem flake-utils.lib.allSystems (system: {
+      packages.fish-nix-shell = nixpkgs.legacyPackages.${system}.callPackage ./. {};
+      defaultPackage = self.packages.${system}.fish-nix-shell;
+    });
 }
