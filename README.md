@@ -1,6 +1,8 @@
 # fish-nix-shell
 fish support for the *nix-shell* environment of the Nix package manager.
 
+Forked from the now archived [haslersn/fish-nix-shell](https://github.com/haslersn/fish-nix-shell).
+
 ## Installation
 
 ### Installation in the user environment

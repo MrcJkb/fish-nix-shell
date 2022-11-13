@@ -1,6 +1,6 @@
-with import <nixpkgs> {}; stdenv.mkDerivation rec {
+{ pkgs ? import <nixpkgs> {} }: with pkgs; stdenv.mkDerivation {
   name = "fish-nix-shell";
-  src = fetchGit "https://github.com/haslersn/fish-nix-shell";
+  src = ./.;
   nativeBuildInputs = [ makeWrapper ];
   installPhase = ''
     mkdir -p $out
@@ -12,5 +12,5 @@ with import <nixpkgs> {}; stdenv.mkDerivation rec {
   '';
   meta.description = "fish support for the nix-shell environment of the Nix package manager.";
   meta.license = "MIT";
-  meta.homepage = https://github.com/haslersn/fish-nix-shell;
+  meta.homepage = "https://github.com/MrcJkb/fish-nix-shell";
 }
